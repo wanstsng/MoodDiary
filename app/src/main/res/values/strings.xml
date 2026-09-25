@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Дневник</string>
+
+    <!-- ===== Заголовки экранов и вкладки навигации ===== -->
+    <string name="title_diary">Дневник</string>
+    <string name="title_stats">Статистика</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_entry">Запись</string>
+    <string name="title_new_entry">Новая запись</string>
+    <string name="title_edit_entry">Редактировать запись</string>
+
+    <!-- ===== Настроения (см. перечисление Mood) ===== -->
+    <string name="mood_great">Отлично</string>
+    <string name="mood_good">Хорошо</string>
+    <string name="mood_neutral">Нейтрально</string>
+    <string name="mood_sad">Грустно</string>
+    <string name="mood_angry">Злость</string>
+
+    <!-- ===== Общие действия ===== -->
+    <string name="action_save">Сохранить</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_edit">Редактировать</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_back">Назад</string>
+    <string name="action_add_entry">Добавить запись</string>
+</resources>

@@ -1,0 +1,28 @@
+# Gradle
+.gradle/
+build/
+captures/
+local.properties
+
+# Android Studio / IntelliJ
+*.iml
+.idea/
+.externalNativeBuild/
+.cxx/
+
+# Сборочные артефакты
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+output.json
+
+# Подписи
+*.jks
+*.keystore
+
+# Прочее
+.DS_Store
+Thumbs.db
+*.log

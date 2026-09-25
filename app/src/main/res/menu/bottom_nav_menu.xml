@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Пункты нижней панели навигации. Идентификаторы совпадают с
+     идентификаторами экранов в nav_graph.xml. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/entryListFragment"
+        android:icon="@drawable/ic_book"
+        android:title="@string/title_diary" />
+
+    <item
+        android:id="@+id/statsFragment"
+        android:icon="@drawable/ic_stats"
+        android:title="@string/title_stats" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/title_settings" />
+</menu>

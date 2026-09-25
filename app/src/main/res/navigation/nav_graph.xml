@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Граф навигации приложения.
+
+    Три вкладки нижней панели (Дневник, Статистика, Настройки) — это
+    самостоятельные точки входа, а экраны записи и редактора открываются
+    поверх списка. Идентификаторы вкладок совпадают с идентификаторами
+    пунктов меню bottom_nav_menu.xml — благодаря этому NavigationUI
+    связывает панель с графом автоматически.
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/entryListFragment">
+
+    <!-- Экран 1: список записей -->
+    <fragment
+        android:id="@+id/entryListFragment"
+        android:name="com.nastya.diary.ui.list.EntryListFragment"
+        android:label="@string/title_diary"
+        tools:layout="@layout/fragment_entry_list">
+
+        <action
+            android:id="@+id/action_list_to_detail"
+            app:destination="@id/entryDetailFragment" />
+
+        <action
+            android:id="@+id/action_list_to_editor"
+            app:destination="@id/entryEditorFragment" />
+    </fragment>
+
+    <!-- Экран 3: детальный просмотр записи -->
+    <fragment
+        android:id="@+id/entryDetailFragment"
+        android:name="com.nastya.diary.ui.detail.EntryDetailFragment"
+        android:label="@string/title_entry"
+        tools:layout="@layout/fragment_entry_detail">
+
+        <argument
+            android:name="entryId"
+            app:argType="long" />
+
+        <action
+            android:id="@+id/action_detail_to_editor"
+            app:destination="@id/entryEditorFragment" />
+    </fragment>
+
+    <!-- Экран 2: создание и редактирование записи -->
+    <fragment
+        android:id="@+id/entryEditorFragment"
+        android:name="com.nastya.diary.ui.editor.EntryEditorFragment"
+        tools:layout="@layout/fragment_entry_editor">
+
+        <!--
+            Один экран работает в двух режимах. Значение по умолчанию -1
+            означает «создаём новую запись»; любое другое — идентификатор
+            редактируемой записи.
+        -->
+        <argument
+            android:name="entryId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+
+    <!-- Экран 4: статистика -->
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.nastya.diary.ui.stats.StatsFragment"
+        android:label="@string/title_stats"
+        tools:layout="@layout/fragment_stats" />
+
+    <!-- Экран 5: настройки -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.nastya.diary.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

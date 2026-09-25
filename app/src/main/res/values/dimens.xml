@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Единая шкала отступов: в разметке используются только эти значения,
+         поэтому экраны выглядят согласованно. -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+
+    <dimen name="radius_card">16dp</dimen>
+    <dimen name="radius_input">12dp</dimen>
+
+    <dimen name="screen_padding">20dp</dimen>
+    <dimen name="chart_height">180dp</dimen>
+    <!-- Запас снизу, чтобы плавающая кнопка не перекрывала последнюю карточку. -->
+    <dimen name="list_bottom_padding">96dp</dimen>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Цвета тёмной темы. Имена совпадают со светлой темой из values/colors.xml,
+         поэтому разметка и код о теме ничего не знают: Android подставляет
+         нужный файл сам. -->
+    <color name="surface_background">#121214</color>
+    <color name="surface_card">#1C1C20</color>
+    <color name="surface_input">#232329</color>
+    <color name="text_primary">#F5F5F7</color>
+    <color name="text_secondary">#9A9AA4</color>
+    <color name="divider">#2C2C33</color>
+    <color name="danger">#EF4444</color>
+
+    <!-- На тёмном фоне светло-фиолетовый читается лучше насыщенного. -->
+    <color name="brand_purple_light">#2A2440</color>
+
+    <!-- Настроения на тёмном фоне делаем чуть светлее, иначе теряют контраст. -->
+    <color name="mood_great">#4ADE80</color>
+    <color name="mood_good">#A3E635</color>
+    <color name="mood_neutral">#FBBF24</color>
+    <color name="mood_sad">#60A5FA</color>
+    <color name="mood_angry">#F87171</color>
+</resources>

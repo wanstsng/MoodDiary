@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ===== Палитра бренда ===== -->
+    <color name="brand_purple">#8B7CF6</color>
+    <color name="brand_purple_dark">#6D5DE0</color>
+    <color name="brand_purple_light">#EDEAFE</color>
+
+    <!-- ===== Цвета светлой темы =====
+         Одноимённые цвета для тёмной темы лежат в values-night/colors.xml,
+         поэтому в разметке используются только эти имена. -->
+    <color name="surface_background">#F6F6F8</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="surface_input">#F1F1F4</color>
+    <color name="text_primary">#15151A</color>
+    <color name="text_secondary">#6E6E78</color>
+    <color name="divider">#E3E3E8</color>
+    <color name="danger">#DC2626</color>
+
+    <!-- ===== Цвета настроений (см. перечисление Mood) ===== -->
+    <color name="mood_great">#22C55E</color>
+    <color name="mood_good">#84CC16</color>
+    <color name="mood_neutral">#F5B301</color>
+    <color name="mood_sad">#3B82F6</color>
+    <color name="mood_angry">#EF4444</color>
+
+    <!-- ===== Цвета диаграмм на экране статистики ===== -->
+    <color name="chart_1">#8B7CF6</color>
+    <color name="chart_2">#4DD0A5</color>
+    <color name="chart_3">#FF8A65</color>
+    <color name="chart_4">#3B82F6</color>
+    <color name="chart_5">#F5B301</color>
+</resources>

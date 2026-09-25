@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        Основная тема приложения на базе Material Design 3.
+        DayNight означает, что светлый и тёмный вариант выбираются
+        автоматически; переопределения тёмной темы лежат в values-night.
+    -->
+    <style name="Theme.Diary" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Основные цветовые роли Material 3 -->
+        <item name="colorPrimary">@color/brand_purple</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">@color/brand_purple_light</item>
+        <item name="colorOnPrimaryContainer">@color/brand_purple_dark</item>
+        <item name="colorSecondary">@color/brand_purple</item>
+        <item name="colorError">@color/danger</item>
+
+        <item name="android:colorBackground">@color/surface_background</item>
+        <item name="colorSurface">@color/surface_card</item>
+        <item name="colorSurfaceVariant">@color/surface_input</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="colorOutline">@color/divider</item>
+
+        <item name="android:statusBarColor">@color/surface_background</item>
+        <item name="android:navigationBarColor">@color/surface_background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+
+        <!-- Стили по умолчанию для повторяющихся элементов -->
+        <item name="materialAlertDialogTheme">@style/Theme.Diary.Dialog</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.Diary.Headline</item>
+    </style>
+
+    <!-- Диалоги подтверждения (например, удаления записи) -->
+    <style name="Theme.Diary.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Diary.Button.Text</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Diary.Button.Text.Danger</item>
+    </style>
+
+    <style name="Widget.Diary.Button.Text" parent="Widget.Material3.Button.TextButton.Dialog" />
+
+    <style name="Widget.Diary.Button.Text.Danger">
+        <item name="android:textColor">@color/danger</item>
+    </style>
+
+    <!-- ===== Типографика ===== -->
+    <style name="TextAppearance.Diary.Headline" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.Diary.SectionLabel" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.Diary.CardTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.Diary.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingMultiplier">1.25</item>
+    </style>
+
+    <!-- ===== Карточки ===== -->
+    <style name="Widget.Diary.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/surface_card</item>
+        <item name="cardCornerRadius">@dimen/radius_card</item>
+        <item name="cardElevation">0dp</item>
+        <item name="contentPadding">@dimen/spacing_md</item>
+    </style>
+
+    <!-- ===== Чипы фильтров и тегов ===== -->
+    <style name="Widget.Diary.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/surface_input</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
+</resources>
