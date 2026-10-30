@@ -1,5 +1,9 @@
 package com.nastya.diary.utils
 
+import android.content.Context
+import android.content.res.Configuration
+import androidx.annotation.PluralsRes
+import java.util.Locale
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
@@ -35,4 +39,10 @@ fun View.setVisible(visible: Boolean, gone: Boolean = true) {
         gone -> View.GONE
         else -> View.INVISIBLE
     }
+}
+
+/** Русский интерфейс использует русские формы числа независимо от языка телефона. */
+fun Context.russianQuantityString(@PluralsRes resourceId: Int, count: Int): String {
+    val configuration = Configuration(resources.configuration).apply { setLocale(Locale("ru")) }
+    return createConfigurationContext(configuration).resources.getQuantityString(resourceId, count, count)
 }

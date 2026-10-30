@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Нижняя панель фильтров: категория, период дат и порядок сортировки. -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorSurface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filters_title"
+            android:textAppearance="@style/TextAppearance.Diary.CardTitle"
+            android:textSize="20sp" />
+
+        <!-- ===== Категория ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:text="@string/label_category"
+            android:textAppearance="@style/TextAppearance.Diary.SectionLabel" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategoryFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            app:singleSelection="true" />
+
+        <!-- ===== Период дат ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:text="@string/label_period"
+            android:textAppearance="@style/TextAppearance.Diary.SectionLabel" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDateRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:gravity="start|center_vertical"
+            android:text="@string/period_any"
+            app:icon="@drawable/ic_calendar"
+            app:cornerRadius="@dimen/radius_input"
+            style="@style/Widget.Material3.Button.TonalButton"
+            tools:text="01.09.2026 — 09.09.2026" />
+
+        <!-- ===== Сортировка ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:text="@string/label_sort"
+            android:textAppearance="@style/TextAppearance.Diary.SectionLabel" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:orientation="vertical" />
+
+        <!-- ===== Кнопки панели ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearFilters"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/spacing_sm"
+                android:text="@string/action_clear_filters"
+                style="@style/Widget.Material3.Button.TonalButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnApplyFilters"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/action_apply" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

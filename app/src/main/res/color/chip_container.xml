@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Фон чипа-фильтра.
+
+    Главное здесь — что цвет зависит от состояния. Раньше фон задавался одним
+    цветом на все состояния, поэтому выбранный чип выглядел ровно так же, как
+    невыбранный, и понять, что фильтр включён, было невозможно.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/brand_purple" />
+    <item android:state_selected="true" android:color="@color/brand_purple" />
+    <item android:color="@color/surface_input" />
+</selector>

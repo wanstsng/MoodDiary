@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Подложка кнопки выбора темы: выбранная обводится цветом бренда. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorSurfaceVariant" />
+            <stroke android:width="2dp" android:color="@color/brand_purple" />
+            <corners android:radius="@dimen/radius_input" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorSurfaceVariant" />
+            <corners android:radius="@dimen/radius_input" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/spacing_md"
+    android:columnCount="4"
+    android:rowCount="3"
+    android:alignmentMode="alignMargins"
+    android:useDefaultMargins="false">
+
+    <View
+        android:id="@+id/swatch1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch3"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch4"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch5"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch6"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch7"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch8"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch9"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch10"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch11"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+
+    <View
+        android:id="@+id/swatch12"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/spacing_sm"
+        android:background="@drawable/bg_color_swatch" />
+</GridLayout>

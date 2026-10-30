@@ -24,4 +24,125 @@
     <string name="action_delete">Удалить</string>
     <string name="action_back">Назад</string>
     <string name="action_add_entry">Добавить запись</string>
+
+    <!-- ===== Экран списка записей ===== -->
+    <string name="list_screen_title">Мой дневник</string>
+    <plurals name="entries_count">
+        <item quantity="one">%d запись</item>
+        <item quantity="few">%d записи</item>
+        <item quantity="many">%d записей</item>
+        <item quantity="other">%d записи</item>
+    </plurals>
+    <string name="empty_entries_title">Записей пока нет</string>
+    <string name="empty_entries_message">Расскажите, как прошёл ваш день — первая запись всегда самая сложная</string>
+    <string name="empty_entries_action">Создать первую запись</string>
+
+    <!-- ===== Описания для программ чтения с экрана ===== -->
+    <string name="content_description_favorite">Избранная запись</string>
+
+    <!-- ===== Экран создания и редактирования записи ===== -->
+    <string name="label_title_required">Заголовок *</string>
+    <string name="label_content">Запись</string>
+    <string name="label_date">Дата</string>
+    <string name="label_mood_required">Настроение *</string>
+    <string name="label_category">Категория</string>
+    <string name="label_tags">Теги</string>
+
+    <string name="hint_title">О чём эта запись?</string>
+    <string name="hint_content">Расскажите, как прошёл день…</string>
+    <string name="hint_new_tag">Добавить тег</string>
+
+    <string name="action_pick_date">Выбрать дату</string>
+    <string name="action_add_tag">Добавить тег</string>
+
+    <!-- Чип настроения: эмодзи и подпись, например «😄 Отлично» -->
+    <string name="mood_chip_template">%1$s %2$s</string>
+
+    <!-- ===== Сообщения валидации ===== -->
+    <string name="error_title_required">Введите заголовок записи</string>
+    <string name="error_title_too_long">Заголовок длиннее 100 символов</string>
+    <string name="error_mood_required">Выберите настроение</string>
+    <string name="error_category_required">Выберите категорию</string>
+    <string name="error_date_in_future">Дата не может быть в будущем</string>
+
+    <!-- ===== Сообщения об успешных действиях ===== -->
+    <string name="message_entry_created">Запись создана</string>
+    <string name="message_entry_updated">Запись сохранена</string>
+
+    <!-- ===== Экран детального просмотра записи ===== -->
+    <string name="detail_empty_content">В этой записи нет текста</string>
+    <string name="detail_updated_at">Изменено %1$s</string>
+    <string name="detail_missing_title">Запись не найдена</string>
+    <string name="detail_missing_message">Похоже, её уже удалили</string>
+
+    <!-- ===== Удаление записи ===== -->
+    <string name="dialog_delete_title">Удалить запись?</string>
+    <string name="dialog_delete_message">Запись будет удалена из дневника. Сразу после удаления действие ещё можно будет отменить.</string>
+    <string name="message_entry_deleted">Запись удалена</string>
+    <string name="action_undo">Отменить</string>
+
+    <!-- ===== Поиск, фильтры и сортировка ===== -->
+    <string name="hint_search">Поиск записей</string>
+    <string name="action_filters">Фильтры</string>
+    <string name="filters_title">Фильтры</string>
+    <string name="filter_all">Все</string>
+    <string name="label_period">Период</string>
+    <string name="label_sort">Сортировка</string>
+    <string name="period_any">Любой период</string>
+    <string name="period_template">%1$s — %2$s</string>
+    <string name="period_from">С %1$s</string>
+    <string name="period_to">По %1$s</string>
+    <string name="action_clear_filters">Сбросить</string>
+    <string name="action_apply">Применить</string>
+    <string name="action_reset_search">Сбросить поиск и фильтры</string>
+
+    <string name="sort_date_desc">Сначала новые</string>
+    <string name="sort_date_asc">Сначала старые</string>
+    <string name="sort_title_asc">По заголовку</string>
+
+    <string name="empty_search_title">Ничего не найдено</string>
+    <string name="empty_search_message">Попробуйте изменить запрос или сбросить фильтры</string>
+
+    <!-- ===== Экран статистики ===== -->
+    <string name="stats_subtitle">Анализ твоих записей</string>
+    <string name="stats_total_label">Всего записей</string>
+    <string name="stats_total_caption">за всё время</string>
+    <string name="stats_month_label">В этом месяце</string>
+    <string name="stats_top_mood_label">Частое настроение</string>
+    <string name="stats_streak_label">Дней подряд</string>
+    <string name="stats_week_activity">Активность за 7 дней</string>
+    <string name="stats_by_category">По категориям</string>
+
+    <plurals name="streak_days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+        <item quantity="other">%d дня</item>
+    </plurals>
+
+    <string name="empty_stats_title">Статистики пока нет</string>
+    <string name="empty_stats_message">Создайте первую запись — и здесь появятся графики вашего настроения</string>
+
+    <!-- ===== Экран настроек ===== -->
+    <string name="settings_theme">Тема оформления</string>
+    <string name="settings_sort">Сортировка записей</string>
+    <string name="settings_date_style">Формат даты в списке</string>
+    <string name="settings_show_preview">Показывать текст записи в списке</string>
+    <string name="settings_version_template">Дневник, версия %1$s</string>
+
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+    <string name="theme_system">Системная</string>
+
+    <string name="date_style_short">7 сент.</string>
+    <string name="date_style_numeric">07.09.2026</string>
+    <string name="date_style_full">7 сентября 2026 г.</string>
+
+    <!-- ===== Экспорт дневника в PDF ===== -->
+    <string name="settings_data">Данные</string>
+    <string name="settings_export_pdf">Экспорт в PDF</string>
+    <string name="settings_export_pdf_caption">Скачать все записи одним файлом</string>
+    <string name="export_share_title">Сохранить дневник</string>
+    <string name="export_ready">Дневник выгружен в PDF</string>
+    <string name="export_no_app">На телефоне нет приложения, которое откроет PDF</string>
 </resources>

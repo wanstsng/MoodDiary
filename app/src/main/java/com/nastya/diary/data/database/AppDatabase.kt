@@ -11,6 +11,7 @@ import com.nastya.diary.data.database.dao.EntryDao
 import com.nastya.diary.data.database.dao.TagDao
 import com.nastya.diary.data.database.entity.CategoryEntity
 import com.nastya.diary.data.database.entity.EntryEntity
+import com.nastya.diary.data.database.entity.EntryFtsEntity
 import com.nastya.diary.data.database.entity.EntryTagCrossRef
 import com.nastya.diary.data.database.entity.TagEntity
 import kotlinx.coroutines.CoroutineScope
@@ -24,11 +25,20 @@ import kotlinx.coroutines.launch
  * Содержит четыре таблицы: три основные ([CategoryEntity], [EntryEntity],
  * [TagEntity]) и промежуточную [EntryTagCrossRef] для связи
  * «многие-ко-многим».
+ *
+ * Пятая, [EntryFtsEntity], — не сущность предметной области, а виртуальная
+ * таблица поискового индекса над записями.
+ *
+ * Версия базы остаётся первой: приложение ещё не выпускалось, поэтому
+ * обновлять с прежней схемы нечего. Как только появится первая
+ * установленная у пользователей версия, любое изменение таблиц потребует
+ * класса `Migration` — иначе Room не откроет базу и данные будут потеряны.
  */
 @Database(
     entities = [
         CategoryEntity::class,
         EntryEntity::class,
+        EntryFtsEntity::class,
         TagEntity::class,
         EntryTagCrossRef::class
     ],

@@ -56,6 +56,11 @@ android {
         // ViewBinding вместо findViewById: обращение к разметке проверяется
         // компилятором, опечатка в идентификаторе не доживает до запуска.
         viewBinding = true
+
+        // Начиная с Android Gradle Plugin 8 класс BuildConfig больше не
+        // генерируется по умолчанию — его нужно запрашивать явно. Экран
+        // настроек берёт из него номер версии приложения.
+        buildConfig = true
     }
 
     testOptions {
@@ -69,10 +74,13 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.fragment.ktx)
 
     // --- Архитектура MVVM ---
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // --- Навигация между экранами ---
     implementation(libs.androidx.navigation.fragment.ktx)
@@ -102,4 +110,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.room.testing)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
 }

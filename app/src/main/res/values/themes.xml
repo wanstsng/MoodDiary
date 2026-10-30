@@ -77,9 +77,38 @@
     </style>
 
     <!-- ===== Чипы фильтров и тегов ===== -->
-    <style name="Widget.Diary.Chip" parent="Widget.Material3.Chip.Filter">
+
+    <!--
+        Чип, который можно выбрать: настроение, категория, тег, фильтр.
+
+        Цвета заданы списками состояний (res/color/chip_*.xml), а не
+        одиночными цветами. Одиночный цвет действует на все состояния сразу,
+        и выбранный чип выглядел бы так же, как невыбранный.
+    -->
+    <style name="Widget.Diary.Chip.Filter" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_container</item>
+        <item name="android:textColor">@color/chip_label</item>
+        <item name="chipStrokeColor">@color/chip_stroke</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">18dp</item>
+        <!-- Галочка сместила бы подпись и растянула чип; выбранное состояние
+             и так однозначно видно по заливке. -->
+        <item name="checkedIconVisible">false</item>
+        <item name="chipIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <!-- Чип-подпись без выбора: категория и теги на экране записи. -->
+    <style name="Widget.Diary.Chip.Display" parent="Widget.Material3.Chip.Assist">
         <item name="chipBackgroundColor">@color/surface_input</item>
-        <item name="android:textColor">@color/text_primary</item>
         <item name="chipStrokeWidth">0dp</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="chipIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="android:textSize">13sp</item>
     </style>
 </resources>

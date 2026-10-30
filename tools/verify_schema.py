@@ -230,6 +230,31 @@ def test_full_text_search(connection):
     ]
     check("поиск по слову «парк» находит запись", found, ["Отличное утро в парке"])
 
+    # Токенизатор unicode61 обязан приводить регистр кириллицы: с
+    # токенизатором по умолчанию этот запрос не нашёл бы ничего.
+    for query in ("ПАРК*", "Парк*", "парк*"):
+        found = [
+            row[0]
+            for row in connection.execute(
+                "SELECT e.id FROM entries e JOIN entries_fts f ON f.docid = e.id "
+                "WHERE entries_fts MATCH ?",
+                (query,),
+            )
+        ]
+        check(f"регистр не влияет на поиск: {query}", found, [1])
+
+    # Запрос из нескольких слов означает «И» и не зависит от их порядка.
+    for query in ("кофе* скамейке*", "скамейке* кофе*"):
+        found = [
+            row[0]
+            for row in connection.execute(
+                "SELECT e.id FROM entries e JOIN entries_fts f ON f.docid = e.id "
+                "WHERE entries_fts MATCH ?",
+                (query,),
+            )
+        ]
+        check(f"несколько слов = И: {query}", found, [1])
+
     found = [
         row[0]
         for row in connection.execute(
@@ -303,6 +328,142 @@ def test_statistics(connection):
     )
 
 
+# Запрос, которым EntryDao отбирает записи: поиск, три фильтра и сортировка.
+FILTER_QUERY = """
+SELECT e.title FROM entries e
+WHERE (:query = '' OR e.title LIKE '%' || :query || '%'
+                  OR e.content LIKE '%' || :query || '%')
+  AND (:mood IS NULL OR e.mood = :mood)
+  AND (:categoryId IS NULL OR e.category_id = :categoryId)
+  AND (:fromDate IS NULL OR e.entry_date >= :fromDate)
+  AND (:toDate IS NULL OR e.entry_date <= :toDate)
+ORDER BY
+    CASE WHEN :sortOrder = 0 THEN e.entry_date END DESC,
+    CASE WHEN :sortOrder = 1 THEN e.entry_date END ASC,
+    CASE WHEN :sortOrder = 2 THEN e.title END COLLATE NOCASE ASC,
+    e.id DESC
+"""
+
+
+def test_filters(connection):
+    """Проверяет поиск, фильтрацию и сортировку — запрос EntryDao.observeFiltered."""
+    print("\n[8] Поиск, фильтры и сортировка")
+
+    def run(**overrides):
+        params = dict(
+            query="", mood=None, categoryId=None,
+            fromDate=None, toDate=None, sortOrder=0
+        )
+        params.update(overrides)
+        return [row[0] for row in connection.execute(FILTER_QUERY, params)]
+
+    check("сортировка: сначала новые", run(sortOrder=0)[0], "Отличное утро в парке")
+    check("сортировка: сначала старые", run(sortOrder=1)[0], "Планы на отпуск")
+    check("сортировка по заголовку", run(sortOrder=2)[0], "Отличное утро в парке")
+    check("поиск по тексту записи", run(query="скамейке"), ["Отличное утро в парке"])
+    check("поиск по заголовку", run(query="пробежка"), ["Пробежка пять километров"])
+    check("поиск без совпадений", run(query="вертолёт"), [])
+    check("фильтр по настроению", len(run(mood="GREAT")), 2)
+    check("фильтр по категории", len(run(categoryId=1)), 3)
+    check("фильтр по периоду дат", len(run(fromDate=millis(2), toDate=millis(1))), 2)
+    check(
+        "фильтры работают вместе",
+        run(query="отпуск", categoryId=1, mood="GREAT"),
+        ["Планы на отпуск"]
+    )
+
+
+def test_stats_queries(connection):
+    """Проверяет запросы экрана статистики — то, что выполняет EntryDao."""
+    print("\n[9] Запросы экрана статистики")
+
+    # observeMoodCounts: сколько записей приходится на каждое настроение
+    mood_counts = connection.execute(
+        "SELECT mood, COUNT(*) AS entryCount FROM entries "
+        "GROUP BY mood ORDER BY entryCount DESC"
+    ).fetchall()
+    check("настроений в сводке", len(mood_counts), 4)
+    check("самое частое настроение первое", mood_counts[0], ("GREAT", 2))
+    check(
+        "сумма по настроениям равна числу записей",
+        sum(row[1] for row in mood_counts),
+        connection.execute("SELECT COUNT(*) FROM entries").fetchone()[0],
+    )
+
+    # observeCountSince: записи за текущий месяц
+    check(
+        "записей начиная с даты",
+        connection.execute(
+            "SELECT COUNT(*) FROM entries WHERE entry_date >= ?", (millis(3),)
+        ).fetchone()[0],
+        4,
+    )
+
+    # observeDailyCounts: активность по дням за последние 7 дней
+    daily = connection.execute(
+        """
+        SELECT entry_date AS dateMillis, COUNT(*) AS entryCount
+        FROM entries
+        WHERE entry_date >= :fromDate
+        GROUP BY entry_date
+        ORDER BY entry_date ASC
+        """,
+        {"fromDate": millis(6)},
+    ).fetchall()
+    check("дней с записями за неделю", len(daily), 5)
+    check("в каждом дне по одной записи", {row[1] for row in daily}, {1})
+    check("дни идут по возрастанию", [r[0] for r in daily], sorted(r[0] for r in daily))
+
+    # observeDistinctDates: даты без повторов, от новых к старым
+    dates = [row[0] for row in connection.execute(
+        "SELECT DISTINCT entry_date FROM entries ORDER BY entry_date DESC"
+    )]
+    check("дат без повторов", len(dates), len(set(dates)))
+    check("даты идут от новых к старым", dates, sorted(dates, reverse=True))
+
+
+def test_streak_algorithm():
+    """Проверяет алгоритм подсчёта серии дней подряд из DiaryRepository.
+
+    Логика повторена здесь на Python: сама по себе она не SQL, но именно в
+    ней легче всего ошибиться на границах — вокруг сегодняшнего и
+    вчерашнего дня.
+    """
+    print("\n[10] Серия дней подряд")
+
+    today = datetime(2026, 9, 9).date()
+
+    def streak(days):
+        """days — даты с записями, от новых к старым, без повторов."""
+        if not days:
+            return 0
+        if days[0] == today:
+            expected = today
+        elif days[0] == today - timedelta(days=1):
+            expected = today - timedelta(days=1)
+        else:
+            return 0
+
+        result = 0
+        for day in days:
+            if day != expected:
+                break
+            result += 1
+            expected -= timedelta(days=1)
+        return result
+
+    def ago(*offsets):
+        return [today - timedelta(days=n) for n in offsets]
+
+    check("записей нет — серия нулевая", streak([]), 0)
+    check("только сегодня — серия 1", streak(ago(0)), 1)
+    check("три дня подряд от сегодня", streak(ago(0, 1, 2)), 3)
+    # Утром сегодняшней записи ещё нет, но серия не должна обнуляться.
+    check("серия от вчера засчитывается", streak(ago(1, 2, 3)), 3)
+    check("пропуск обрывает серию", streak(ago(0, 1, 3, 4)), 2)
+    check("давняя запись серию не даёт", streak(ago(5, 6)), 0)
+
+
 def main():
     connection = build_database()
     seed(connection)
@@ -314,6 +475,9 @@ def main():
     test_cascade(connection)
     test_full_text_search(connection)
     test_statistics(connection)
+    test_filters(connection)
+    test_stats_queries(connection)
+    test_streak_algorithm()
 
     print(f"\nИтог: успешно {passed}, с ошибками {failed}")
     return 1 if failed else 0

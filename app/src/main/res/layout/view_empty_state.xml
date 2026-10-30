@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Заглушка для пустых состояний.
+
+    Используется и когда записей ещё нет, и когда ничего не нашлось по
+    фильтрам: подписи и иконка задаются из кода, поэтому вёрстка одна.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emptyState"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/spacing_xl">
+
+    <ImageView
+        android:id="@+id/imgEmpty"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:alpha="0.4"
+        android:src="@drawable/ic_notebook_empty"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/tvEmptyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_md"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Diary.CardTitle"
+        tools:text="Записей пока нет" />
+
+    <TextView
+        android:id="@+id/tvEmptyMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.Diary.Body"
+        tools:text="Расскажите, как прошёл ваш день" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEmptyAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        tools:text="Создать первую запись" />
+</LinearLayout>
